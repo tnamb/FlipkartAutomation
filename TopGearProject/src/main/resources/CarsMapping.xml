@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="project.bed2.model.Cars" table="cars">
+   
+      <id name="id" type="int">
+         <column name="id" />
+         <generator class="native" />
+      </id>
+      
+      <property name="brand" type="java.lang.String">
+         <column name="brand" />
+      </property>
+      
+      <property name="model" type="java.lang.String">
+         <column name="model" />
+      </property>
+      
+      <property name="year" type="int">
+         <column name="year" />
+      </property>
+      
+      <property name="distance" type="int">
+         <column name="distance" />
+      </property>
+      
+            <property name="price" type="int">
+         <column name="price" />
+      </property>
+      
+            <property name="fuel" type="java.lang.String">
+         <column name="fuel" />
+      </property>
+      
+                  <property name="sno" type="int">
+         <column name="sno" />
+      </property>
+      
+      
+      
+   </class>
+</hibernate-mapping>
