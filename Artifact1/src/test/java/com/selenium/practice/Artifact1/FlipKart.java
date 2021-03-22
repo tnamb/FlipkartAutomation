@@ -124,7 +124,7 @@ public class FlipKart
                  */
                 
                 VerifyContent(productName, productPrice);
-                productName = productName.substring(0,13); 
+                productName = productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page)
                 assertEquals(productName, productName2); //Testing for the same product name
                 assertEquals(productPrice, productPrice2); //Testing for the same product price
                 assertEquals(firstList, secondList); //Testing for the same product description
