@@ -71,7 +71,7 @@ public class FlipKart
                         e.printStackTrace();
                     }
 
-                driver = ChooseBrowser(browName);
+                ChooseBrowser(browName);
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 driver.get(url);
 
@@ -99,19 +99,19 @@ public class FlipKart
                                                                                                                     // search
                                                                                                                     // results
 
-                List<WebElement> numberOfLi = block.findElements(By.cssSelector("li.rgWa7D")); // Description count
-
+                List<WebElement> numberOfLi = block.findElements(By.cssSelector("li.rgWa7D")); // Getting the list of products on the search screen
+                
                 productName = block.findElement(By.className("_4rR01T")).getText();
-                System.out.println("ProductName: " + productName);
+                    System.out.println("ProductName: " + productName);
 
                 productPrice = block.findElement(By.cssSelector("div._30jeq3._1_WHN1")).getText();
-                System.out.println("ProductPrice" + productPrice);
+                    System.out.println("ProductPrice" + productPrice);
 
-                StoreDataInList(numberOfLi); // Storing product description onto a List
+                StoreDataInList(numberOfLi); // Storing randomly selected product description into a List
 
                 block.click();
-                List<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-                driver.switchTo().window(newTab.get(1));
+                List<String> newTab = new ArrayList<String>(driver.getWindowHandles()); 
+                driver.switchTo().window(newTab.get(1)); 
 
                 VerifyDescription();
 
@@ -124,7 +124,7 @@ public class FlipKart
                  */
                 
                 VerifyContent(productName, productPrice);
-                productName = productName.substring(0,13);
+                productName = productName.substring(0,13); 
                 assertEquals(productName, productName2); //Testing for the same product name
                 assertEquals(productPrice, productPrice2); //Testing for the same product price
                 assertEquals(firstList, secondList); //Testing for the same product description
@@ -168,10 +168,6 @@ public class FlipKart
             {
                 if (browserToExecute.equalsIgnoreCase("chrome"))
                     {
-                        /*
-                         * WebDriverManager.chromedriver().setup(); driver = new ChromeDriver();
-                         */
-
                         DesiredCapabilities cap = DesiredCapabilities.chrome();
                         cap.setBrowserName("chrome");
                         cap.setPlatform(Platform.ANY);
@@ -185,8 +181,6 @@ public class FlipKart
                         File pathToBinary = new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
                         FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);
                         
-                        
-
                         DesiredCapabilities cap = DesiredCapabilities.firefox();
                         cap.setBrowserName("firefox");
                         cap.setPlatform(Platform.ANY);
@@ -202,12 +196,12 @@ public class FlipKart
                         DesiredCapabilities cap = DesiredCapabilities.edge();
                         cap.setBrowserName("edge");
                         cap.setPlatform(Platform.ANY);
-                        
+                        //cap.setVersion("89.0.774.57");
+                                                
                         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
                         
                     }
                  
-
                 else if (browserToExecute.equalsIgnoreCase("opera"))
                     {
                         DesiredCapabilities cap = DesiredCapabilities.opera();
@@ -273,41 +267,10 @@ public class FlipKart
                 
                 
                 productName2 = productName2.substring(0,13);
-                
 
                 System.out.println("*----------------------------------*");
                 System.out.println(productName2 + "; " + productPrice2);
                 System.out.println(productName + "; " + productPrice);
             }  
-        
-
-        public void TestData()
-            {
-               
-                try
-                    {
-                        /*
-                         * Wini ini = new Wini(new File("F:\\Selenium\\Test.ini")); productName =
-                         * ini.get("test", "productName"); productPrice = ini.get("test",
-                         * "productPrice");
-                         * 
-                         * productName2 = ini.get("test2", "productName2"); productPrice2 =
-                         * ini.get("test2", "productPrice2");
-                         */
-
-                        assertEquals(productName, productName2);
-                        assertEquals(productPrice, productPrice2);
-                        assertEquals(firstList, secondList);
-                        
-                        
-                    }
-                
-                catch(Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                
-
-            }
-    
+            
     }
