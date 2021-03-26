@@ -1,6 +1,7 @@
 package com.selenium.flipkart.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class TestFlipkart
         static Properties config;
         
         @Test(priority=1)
-        public void ScriptTest() throws MalformedURLException, InterruptedException
+        public void ScriptTest() throws InterruptedException, IOException
         {
             TestFlipkart obj = new TestFlipkart();
             TestLogin logIn = new TestLogin();
@@ -62,9 +63,7 @@ public class TestFlipkart
             logOut.LogoutFromFlipkart();
             
             search.productName = search.productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page)
-           
 
-            
         }
         
         public static RemoteWebDriver ChooseBrowser(String browserToExecute) throws MalformedURLException
@@ -82,8 +81,11 @@ public class TestFlipkart
                 else if (browserToExecute.equalsIgnoreCase("firefox"))
                     {
 
-                        File pathToBinary = new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-                        FirefoxBinary ffBinary = new FirefoxBinary(pathToBinary);
+                        /*
+                         * File pathToBinary = new
+                         * File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); FirefoxBinary
+                         * ffBinary = new FirefoxBinary(pathToBinary);
+                         */
 
                         DesiredCapabilities cap = DesiredCapabilities.firefox();
                         cap.setBrowserName("firefox");
@@ -133,7 +135,7 @@ public class TestFlipkart
             password = resource.getString("password");
             url = resource.getString("url");
             searchParameter = resource.getString("searchParameter");
-            browser = "chrome";                                                        
+            browser = resource.getString("browser");                                                        
         }
         
         public void VerifyDescription()

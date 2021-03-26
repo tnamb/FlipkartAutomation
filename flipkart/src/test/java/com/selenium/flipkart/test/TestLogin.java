@@ -1,22 +1,25 @@
 package com.selenium.flipkart.test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.Test;
-
 
 public class TestLogin extends TestFlipkart
     {    
-        public void LoginMethod()
+        public void LoginMethod() throws IOException
             {
-                WebElement popUp = TestFlipkart.driver.findElement(By.xpath("/html/body/div[2]/div/div")); // login popup
+                Properties obj = new Properties();
+                FileInputStream objfile = new FileInputStream(System.getProperty("user.dir")+"\\object.properties");
+                obj.load(objfile);
+
+                WebElement popUp = TestFlipkart.driver.findElement(By.xpath(obj.getProperty("loginPopup"))); // login popup
                 if (popUp != null)
                     {
-                        TestFlipkart.driver.findElement(By.xpath("//input[@class='_2IX_2- VJZDxU']")).sendKeys(TestFlipkart.username);
-                        TestFlipkart.driver.findElement(By.xpath("//input[@class='_2IX_2- _3mctLh VJZDxU']")).sendKeys(TestFlipkart.password);
-                        TestFlipkart.driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[4]/button")).click();
+                        TestFlipkart.driver.findElement(By.xpath("usernameTextBox']")).sendKeys(TestFlipkart.username);
+                        TestFlipkart.driver.findElement(By.xpath("passwordTextBox")).sendKeys(TestFlipkart.password);
+                        TestFlipkart.driver.findElement(By.xpath("loginPopupCloseButton")).click();
                     }
             }
     }
