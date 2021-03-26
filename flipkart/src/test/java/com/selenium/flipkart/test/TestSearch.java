@@ -24,24 +24,25 @@ public class TestSearch extends TestLogin
         {
             TestFlipkart.config = new Properties();
             ResourceBundle resource = ResourceBundle.getBundle("config");
+            ResourceBundle objectResource = ResourceBundle.getBundle("object");
             object.searchParameter = resource.getString("searchParameter");
-            Thread.sleep(2000); 
+            Thread.sleep(5000); 
             
             WebDriverWait wait = new WebDriverWait(TestFlipkart.driver, 5); // Explicit wait
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@class='_3704LK']")))
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(objectResource.getString("searchBar"))))
                     .sendKeys(object.searchParameter);
-            TestFlipkart.driver.findElement(By.cssSelector("button.L0Z3Pu")).click();
+            TestFlipkart.driver.findElement(By.cssSelector(objectResource.getString("searchButton"))).click();
             
-            List<WebElement> numberOfElements = TestFlipkart.driver.findElements(By.className("_13oc-S")); // Finding the number of search elements                                                                                  
+            List<WebElement> numberOfElements = TestFlipkart.driver.findElements(By.className(objectResource.getString("searchListNumberOfElements"))); // Finding the number of search elements                                                                                  
             int number = RandomNumberGenerator(numberOfElements.size()); // Calling random method            
-            By div = By.xpath("//*[@id=\"container\"]/div/div[3]/div[1]/div[2]/div[" + (number - 1) + "]/div");
+            By div = By.xpath("//*[@id=\"container\"]/div/div[3]/div[1]/div[2]/div[" + (number - 1) + "]/div"); //Relative XPath
             block = TestFlipkart.driver.findElement(div);                    // Selecting a random element
-            List<WebElement> numberOfLi = block.findElements(By.cssSelector("li.rgWa7D")); 
+            List<WebElement> numberOfLi = block.findElements(By.cssSelector(objectResource.getString("numberOfListElements"))); 
 
-            productName = block.findElement(By.className("_4rR01T")).getText();
+            productName = block.findElement(By.className(objectResource.getString("productName"))).getText();
             System.out.println("ProductName: " + productName);
 
-            productPrice = block.findElement(By.cssSelector("div._30jeq3._1_WHN1")).getText();
+            productPrice = block.findElement(By.cssSelector(objectResource.getString("productPrice"))).getText();
             System.out.println("ProductPrice: " + productPrice);
 
             StoreDataInList(numberOfLi); // Storing randomly selected product description into a List
@@ -76,16 +77,5 @@ public class TestSearch extends TestLogin
                     }
                 firstList.remove(firstList.size() - 1);
             }
-    
-        /*
-         * @Test(priority=2) public void testAssertions() { //TestSearch search = new
-         * TestSearch(); SoftAssert sa = new SoftAssert();
-         * 
-         * System.out.println("TESTING1: " + productName + "****" + productName2);
-         * System.out.println("TESTING2: " + productPrice + "****" + productPrice2);
-         * System.out.println("TESTING3: " + firstList + "****" + secondList);
-         * 
-         * sa.assertEquals(productName, productName2); sa.assertEquals(productPrice,
-         * productPrice2); sa.assertEquals(firstList, secondList); }
-         */
+
     }

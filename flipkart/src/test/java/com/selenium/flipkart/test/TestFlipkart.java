@@ -1,6 +1,5 @@
 package com.selenium.flipkart.test;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -9,19 +8,16 @@ import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class TestFlipkart
     {        
         static String productNameO = "";
@@ -39,6 +35,7 @@ public class TestFlipkart
         static RemoteWebDriver driver;
         static List<String> secondList = new ArrayList<String>();
         static Properties config;
+        
         
         @Test(priority=1)
         public void ScriptTest() throws InterruptedException, IOException
@@ -63,7 +60,6 @@ public class TestFlipkart
             logOut.LogoutFromFlipkart();
             
             search.productName = search.productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page)
-
         }
         
         public static RemoteWebDriver ChooseBrowser(String browserToExecute) throws MalformedURLException
@@ -80,13 +76,6 @@ public class TestFlipkart
 
                 else if (browserToExecute.equalsIgnoreCase("firefox"))
                     {
-
-                        /*
-                         * File pathToBinary = new
-                         * File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); FirefoxBinary
-                         * ffBinary = new FirefoxBinary(pathToBinary);
-                         */
-
                         DesiredCapabilities cap = DesiredCapabilities.firefox();
                         cap.setBrowserName("firefox");
                         cap.setPlatform(Platform.ANY);
@@ -96,19 +85,10 @@ public class TestFlipkart
 
                 else if (browserToExecute.equalsIgnoreCase("edge"))
                     {
-                        /*
-                         * WebDriverManager.edgedriver().setup(); driver = new EdgeDriver();
-                         */
                         EdgeOptions options = new EdgeOptions();
                         options.setCapability("browserName", "edge");
                         options.setCapability("ignoreZoomSetting", true);
                         options.setCapability("browserVersion", "89.0.774.57");
-
-                        /*
-                         * DesiredCapabilities cap = DesiredCapabilities.edge();
-                         * cap.setBrowserName("edge"); cap.setPlatform(Platform.WIN10);
-                         */
-                        // cap.setVersion("89.0.774.57");
 
                         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
 
@@ -138,10 +118,12 @@ public class TestFlipkart
             browser = resource.getString("browser");                                                        
         }
         
+        
         public void VerifyDescription()
             {
-                WebElement block2 = driver.findElement(By.cssSelector("div._2418kt"));
-                List<WebElement> count = block2.findElements(By.cssSelector("li._21Ahn-")); // Description count
+                ResourceBundle objectResource = ResourceBundle.getBundle("object");
+                WebElement block2 = driver.findElement(By.cssSelector(objectResource.getString("listBlock")));
+                List<WebElement> count = block2.findElements(By.cssSelector(objectResource.getString("listBlockElements"))); // Description count
 
                 System.out.println("x-----------------------------------------------------x");
                 for (WebElement link : count)
@@ -151,20 +133,21 @@ public class TestFlipkart
                     }
             }
         
+
         public void VerifyContent(String productName, String productPrice) throws InterruptedException
             {
-
                 Thread.sleep(2000);
                 productName2 = driver
-                        .findElement(By.xpath(
-                                "//*[@id='container']/div/div[2]/div/div/div[1]/div/div[2]/div/div[1]/div[1]/div[1]/a"))
-                        .getText();
+                        .findElement(By.xpath("//a[contains(text(),'"+ productName +"')]"))
+                            .getText();
+                
+                productPrice = productPrice.substring(1, productPrice.length()); //Removing the rupee symbol from price as it causes NoSuchElementException
                 productPrice2 = driver
-                        .findElement(By.xpath(
-                                "//*[@id='container']/div/div[2]/div/div/div[1]/div/div[2]/div/div[1]/div[1]/span[1]"))
-                        .getText();
+                        .findElement(By.xpath("//span[@Class='_2-ut7f _1WpvJ7'][contains(text(), '₹') or contains(text(), '"+ productPrice +"')]"))
+                            .getText();
 
                 productName2 = productName2.substring(0, 13);
+                productPrice2 = productPrice2.substring(1, productPrice2.length());
 
                 System.out.println("*----------------------------------*");
                 System.out.println(productName2 + "; " + productPrice2);
@@ -175,27 +158,18 @@ public class TestFlipkart
             }
     
         
-          @SuppressWarnings("deprecation")
           @Test(priority=2) 
           public void testAssertions() 
           { 
-                           
-              SoftAssert sa = new SoftAssert();
               productNameO = productNameO.substring(0,13);
           
               System.out.println("TESTING1: " + productNameO + "****" + productName2); 
               System.out.println("TESTING2: " + productPriceO + "****" + productPrice2); 
               System.out.println("TESTING3: " + TestSearch.firstList + "****" + secondList);
-          
-              sa.assertEquals(productNameO, productName2);
-              sa.assertEquals(productPriceO, productPrice2);
-              sa.assertEquals(TestSearch.firstList, secondList); // description
               
-
               Assert.assertEquals(productNameO, productName2);
               Assert.assertEquals(productPriceO, productPrice2);
-              Assert.assertEquals(TestSearch.firstList, secondList);
-              
+              Assert.assertEquals(TestSearch.firstList, secondList);         
           }
          
     } 
