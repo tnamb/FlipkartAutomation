@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20085" started-at="2021-03-26T15:14:34 IST" finished-at="2021-03-26T15:14:54 IST">
+  <suite name="Default suite" duration-ms="29353" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="20085" started-at="2021-03-26T15:14:34 IST" finished-at="2021-03-26T15:14:54 IST">
+    <test name="Default test" duration-ms="29353" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
       <class name="com.selenium.flipkart.test.TestFlipkart">
-        <test-method status="PASS" signature="ScriptTest()[pri:1, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="ScriptTest" duration-ms="20012" started-at="2021-03-26T15:14:34 IST" finished-at="2021-03-26T15:14:54 IST">
+        <test-method status="PASS" signature="ScriptTest()[pri:1, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="ScriptTest" duration-ms="29290" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScriptTest -->
-        <test-method status="PASS" signature="testAssertions()[pri:2, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="testAssertions" duration-ms="18" started-at="2021-03-26T15:14:54 IST" finished-at="2021-03-26T15:14:54 IST">
+        <test-method status="PASS" signature="testAssertions()[pri:2, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="testAssertions" duration-ms="7" started-at="2021-03-26T16:32:49 IST" finished-at="2021-03-26T16:32:49 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAssertions -->
