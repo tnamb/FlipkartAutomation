@@ -136,6 +136,7 @@ public class TestFlipkart
 
         public void VerifyContent(String productName, String productPrice) throws InterruptedException
             {
+                productName = productName.substring(0,13);
                 Thread.sleep(2000);
                 productName2 = driver
                         .findElement(By.xpath("//a[contains(text(),'"+ productName +"')]"))
@@ -161,7 +162,7 @@ public class TestFlipkart
           @Test(priority=2) 
           public void testAssertions() 
           { 
-              productNameO = productNameO.substring(0,13);
+              //productNameO = productNameO.substring(0,13);
           
               System.out.println("TESTING1: " + productNameO + "****" + productName2); 
               System.out.println("TESTING2: " + productPriceO + "****" + productPrice2); 
