@@ -3,11 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.selenium.flipkart.test.TestFlipkart">
+      <class name="com.selenium.flipkart.testCases.FlipkartTest">
         <methods>
-          <include name="testAssertions"/>
+          <include name="ScriptTest"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- com.selenium.flipkart.test.TestFlipkart -->
+      </class> <!-- com.selenium.flipkart.testCases.FlipkartTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -2,20 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="29353" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
+  <suite name="Suite" duration-ms="20627" started-at="2021-03-29T14:35:30 IST" finished-at="2021-03-29T14:35:50 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="29353" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
-      <class name="com.selenium.flipkart.test.TestFlipkart">
-        <test-method status="PASS" signature="ScriptTest()[pri:1, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="ScriptTest" duration-ms="29290" started-at="2021-03-26T16:32:20 IST" finished-at="2021-03-26T16:32:49 IST">
+    <test name="Test" duration-ms="20627" started-at="2021-03-29T14:35:30 IST" finished-at="2021-03-29T14:35:50 IST">
+      <class name="com.selenium.flipkart.testCases.FlipkartTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.selenium.flipkart.testCases.FlipkartTest@394e1a0f]" name="setup" is-config="true" duration-ms="6127" started-at="2021-03-29T14:35:24 IST" finished-at="2021-03-29T14:35:30 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="ScriptTest()[pri:1, instance:com.selenium.flipkart.testCases.FlipkartTest@394e1a0f]" name="ScriptTest" duration-ms="20301" started-at="2021-03-29T14:35:30 IST" finished-at="2021-03-29T14:35:50 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScriptTest -->
-        <test-method status="PASS" signature="testAssertions()[pri:2, instance:com.selenium.flipkart.test.TestFlipkart@4d41cee]" name="testAssertions" duration-ms="7" started-at="2021-03-26T16:32:49 IST" finished-at="2021-03-26T16:32:49 IST">
+        <test-method status="PASS" signature="testAssertions()[pri:2, instance:com.selenium.flipkart.testCases.FlipkartTest@394e1a0f]" name="testAssertions" duration-ms="5" started-at="2021-03-29T14:35:50 IST" finished-at="2021-03-29T14:35:50 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAssertions -->
-      </class> <!-- com.selenium.flipkart.test.TestFlipkart -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:com.selenium.flipkart.testCases.FlipkartTest@394e1a0f]" name="quitDriver" is-config="true" duration-ms="235" started-at="2021-03-29T14:35:50 IST" finished-at="2021-03-29T14:35:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- com.selenium.flipkart.testCases.FlipkartTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

@@ -4,7 +4,7 @@
   <test name="Test">
     <classes>
 <!--       <class name="com.selenium.flipkart.test.TestSearch"/> -->
-      <class name="com.selenium.flipkart.test.TestFlipkart"/>
+      <class name="com.selenium.flipkart.testCases.FlipkartTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
