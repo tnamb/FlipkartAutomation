@@ -4,18 +4,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 
 public class TestBase
     {        

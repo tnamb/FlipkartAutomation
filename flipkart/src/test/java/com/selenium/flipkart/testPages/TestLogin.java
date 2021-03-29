@@ -1,7 +1,6 @@
 package com.selenium.flipkart.testPages;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.selenium.flipkart.testBase.TestBase;

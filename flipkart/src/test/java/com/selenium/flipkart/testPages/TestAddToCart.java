@@ -12,7 +12,6 @@ public class TestAddToCart extends TestBase
         {
             objectFile = ResourceBundle.getBundle("object");
             By button = By.xpath(objectFile.getString("addToCartButton"));
-            
             wait.until(ExpectedConditions.presenceOfElementLocated(button)).click();                                                                              
         }
     }

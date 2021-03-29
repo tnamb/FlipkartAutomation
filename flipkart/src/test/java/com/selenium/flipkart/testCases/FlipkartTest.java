@@ -2,12 +2,11 @@ package com.selenium.flipkart.testCases;
 
 import java.io.IOException;
 import org.testng.annotations.Test;
-
 import com.selenium.flipkart.testBase.TestBase;
 import com.selenium.flipkart.testPages.*;
-
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class FlipkartTest extends TestBase
     {
 
@@ -22,7 +21,6 @@ public class FlipkartTest extends TestBase
                       TestAddToCart atc = new TestAddToCart();
                       StoreListDetails verify = new StoreListDetails();
 
-                      
                       logIn.LoginMethod(); 
                       search.SearchFlipkart(); 
                       verify.VerifyDescription(); //manual check 
@@ -33,7 +31,6 @@ public class FlipkartTest extends TestBase
                       logOut.LogoutFromFlipkart();
                   }
         
-        @SuppressWarnings("deprecation")
         @Test(priority = 2) 
         public void testAssertions() 
         { 

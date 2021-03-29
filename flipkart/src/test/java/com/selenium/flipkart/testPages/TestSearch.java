@@ -2,16 +2,10 @@ package com.selenium.flipkart.testPages;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.ResourceBundle;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import com.selenium.flipkart.testBase.TestBase;
 
 public class TestSearch extends TestBase
@@ -23,8 +17,6 @@ public class TestSearch extends TestBase
 
         public void SearchFlipkart() throws InterruptedException
             {
-                //configFile = ResourceBundle.getBundle("config");
-                //objectFile = ResourceBundle.getBundle("object");
                 searchParameter = configFile.getString("searchParameter");
 
                 WebDriverWait popUpWait = new WebDriverWait(driver, 5); // Explicit wait
@@ -54,8 +46,8 @@ public class TestSearch extends TestBase
                 System.out.println("ProductPrice: " + productPrice);
 
                 StoreDataInList(numberOfLi); // Storing randomly selected product description into a List
-
-                block.click();
+                    block.click();
+                
                 List<String> newTab = new ArrayList<String>(driver.getWindowHandles());
                 driver.switchTo().window(newTab.get(1));
             }
@@ -63,7 +55,6 @@ public class TestSearch extends TestBase
         public static int RandomNumberGenerator(int randomNumber)
 
             {
-                // Create randomize method
                 int number = 2;
                 int minimum = 2;
                 int range = randomNumber - minimum + 1;
