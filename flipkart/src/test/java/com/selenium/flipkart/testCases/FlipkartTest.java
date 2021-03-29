@@ -25,9 +25,8 @@ public class FlipkartTest extends TestBase
                       search.SearchFlipkart(); 
                       verify.VerifyDescription(); //manual check 
                       atc.Cart(); 
-                      verify.VerifyContent(search.productName, search.productPrice); // manual check logOut.LogoutFromFlipkart();
-              
-                      search.productName = search.productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page) 
+                      verify.VerifyContent(search.productName, search.productPrice); //manual check 
+                          search.productName = search.productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page) 
                       logOut.LogoutFromFlipkart();
                   }
         
