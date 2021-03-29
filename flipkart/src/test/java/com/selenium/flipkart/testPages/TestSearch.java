@@ -19,7 +19,7 @@ public class TestSearch extends TestBase
             {
                 searchParameter = configFile.getString("searchParameter");
 
-                WebDriverWait popUpWait = new WebDriverWait(driver, 5); // Explicit wait
+                WebDriverWait popUpWait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explictWait"))); // Explicit wait
                 popUpWait.until(ExpectedConditions
                         .invisibilityOfElementLocated(By.xpath(objectFile.getString("loginPopup"))));
 
