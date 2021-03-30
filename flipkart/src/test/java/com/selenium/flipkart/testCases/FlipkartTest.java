@@ -11,9 +11,7 @@ public class FlipkartTest extends TestBase
         
               public void ScriptTest() throws InterruptedException, IOException 
                   { 
-                      //TestBase obj = new TestBase(); 
-                      
-                
+                      //TestBase obj = new TestBase();                 
                 /*
                  * LoginTest logIn = new LoginTest(); SearchTest search = new SearchTest();
                  * LogoutTest logOut = new LogoutTest(); AddToCartTest atc = new
@@ -29,7 +27,7 @@ public class FlipkartTest extends TestBase
                  // TestBase.VerifyContent(search.productName, search.productPrice); //manual check 
                    // cutting the string to 13 letters(product name can be very long otherwise which isn't shown completely inproduct page) 
                   //logOut.LogoutFromFlipkart();
-                 System.out.println("Entered here for some reason");
+                 
                   }
         
         @Test(priority = 5) 
