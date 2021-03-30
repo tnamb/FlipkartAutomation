@@ -5,7 +5,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import com.selenium.flipkart.testBase.TestBase;
 
 public class TestSearch extends TestBase
@@ -18,12 +17,10 @@ public class TestSearch extends TestBase
         public void SearchFlipkart() throws InterruptedException
             {
                 searchParameter = configFile.getString("searchParameter");
-
-                WebDriverWait popUpWait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explictWait"))); // Explicit wait
+                
                 popUpWait.until(ExpectedConditions
                         .invisibilityOfElementLocated(By.xpath(objectFile.getString("loginPopup"))));
 
-                wait = new WebDriverWait(driver, 1); // Explicit wait
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(objectFile.getString("searchBar"))))
                         .sendKeys(searchParameter);
                 
@@ -49,32 +46,7 @@ public class TestSearch extends TestBase
                     block.click();
                 
                 List<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-                driver.switchTo().window(newTab.get(1));
-            }
-
-        public static int RandomNumberGenerator(int randomNumber)
-
-            {
-                int number = 2;
-                int minimum = 2;
-                int range = randomNumber - minimum + 1;
-
-                for (int i = 2; i < randomNumber; i++)
-                    {
-                        number = (int) (Math.random() * range) + minimum;
-                    }
-
-                return number;
-            }
-
-        public void StoreDataInList(List<WebElement> numberOfLi)
-            {
-                for (WebElement link : numberOfLi)
-                    {
-                        System.out.println(link.getText());
-                        firstList.add(link.getText());
-                    }
-                firstList.remove(firstList.size() - 1);
+                driver.switchTo().window(newTab.get(1)); //switching to the new tab
             }
 
     }

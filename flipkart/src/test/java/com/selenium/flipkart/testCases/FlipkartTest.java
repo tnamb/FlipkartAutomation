@@ -3,34 +3,35 @@ package com.selenium.flipkart.testCases;
 import java.io.IOException;
 import org.testng.annotations.Test;
 import com.selenium.flipkart.testBase.TestBase;
-import com.selenium.flipkart.testPages.*;
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
 public class FlipkartTest extends TestBase
     {
-
-        @Test(priority = 1) 
+        
               public void ScriptTest() throws InterruptedException, IOException 
                   { 
                       //TestBase obj = new TestBase(); 
                       
-                      TestLogin logIn = new TestLogin(); 
-                      TestSearch search = new TestSearch(); 
-                      TestLogout logOut = new TestLogout(); 
-                      TestAddToCart atc = new TestAddToCart();
-                      StoreListDetails verify = new StoreListDetails();
-
-                      logIn.LoginMethod(); 
-                      search.SearchFlipkart(); 
-                      verify.VerifyDescription(); //manual check 
-                      atc.Cart(); 
-                      verify.VerifyContent(search.productName, search.productPrice); //manual check 
-                          search.productName = search.productName.substring(0,13); // cutting the string to 13 letters (product name can be very long otherwise which isn't shown completely in product page) 
-                      logOut.LogoutFromFlipkart();
+                
+                  LoginTest logIn = new LoginTest(); 
+                  SearchTest search = new SearchTest();
+                  LogoutTest logOut = new LogoutTest(); 
+                  AddToCartTest atc = new AddToCartTest(); //StoreListDetails verify = new StoreListDetails();
+                  
+                 // logIn.LoginMethod(); 
+                 // search.SearchFlipkart(); 
+                  
+                  //manual check 
+                 // atc.Cart(); 
+                  
+                 // TestBase.VerifyContent(search.productName, search.productPrice); //manual check 
+                   // cutting the string to 13 letters(product name can be very long otherwise which isn't shown completely inproduct page) 
+                  //logOut.LogoutFromFlipkart();
+                 System.out.println("Entered here for some reason");
                   }
         
-        @Test(priority = 2) 
+        @Test(priority = 5) 
         public void testAssertions() 
         { 
             //for console check        
@@ -40,7 +41,7 @@ public class FlipkartTest extends TestBase
             
             Assert.assertEquals(productNameO, productName2);
             Assert.assertEquals(productPriceO, productPrice2);
-            Assert.assertEquals(TestSearch.firstList, secondList);         
+            Assert.assertEquals(SearchTest.firstList, secondList);         
         }
 
     }

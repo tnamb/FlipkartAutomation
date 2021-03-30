@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test name="Test">
+  <test thread-count="5" name="Test">
     <classes>
-<!--       <class name="com.selenium.flipkart.test.TestSearch"/> -->
+      <!-- <class name="com.selenium.flipkart.testCases.FlipkartTest"/> -->
+      <class name="com.selenium.flipkart.testCases.LoginTest"/>
+      <class name="com.selenium.flipkart.testCases.SearchTest"/>
+      <class name="com.selenium.flipkart.testCases.AddToCartTest"/>
+      <class name="com.selenium.flipkart.testCases.LogoutTest"/>
       <class name="com.selenium.flipkart.testCases.FlipkartTest"/>
     </classes>
   </test> <!-- Test -->

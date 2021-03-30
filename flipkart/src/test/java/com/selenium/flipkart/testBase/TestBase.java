@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -29,7 +32,7 @@ public class TestBase
         
         //static WebElement block;
         public static RemoteWebDriver driver;
-        protected static WebDriverWait wait;
+        protected static WebDriverWait wait, popUpWait;
         protected static List<String> secondList = new ArrayList<String>();
         protected static List<String> firstList = new ArrayList<String>();
         
@@ -100,7 +103,79 @@ public class TestBase
             driver.get(url); 
             driver.manage().timeouts().implicitlyWait(Integer.parseInt(configFile.getString("implicitWait")),TimeUnit.SECONDS);
             wait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait"))); 
+            popUpWait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait"))); // Explicit wait
         }
+        
+        
+        public static int RandomNumberGenerator(int randomNumber)
+
+            {
+                int number = 2;
+                int minimum = 2;
+                int range = randomNumber - minimum + 1;
+
+                for (int i = 2; i < randomNumber; i++)
+                    {
+                        number = (int) (Math.random() * range) + minimum;
+                    }
+
+                return number;
+            }
+
+        public static void StoreDataInList(List<WebElement> numberOfLi)
+            {
+                for (WebElement link : numberOfLi)
+                    {
+                        System.out.println(link.getText());
+                        firstList.add(link.getText());
+                    }
+                firstList.remove(firstList.size() - 1); //remove the last bullet point (warranty related info: not needed)
+            }
+        
+        //***********************
+        
+        public static void VerifyDescription()
+            {
+                //store for verification and console check
+                WebElement block2 = driver.findElement(By.cssSelector(objectFile.getString("listBlock")));
+                List<WebElement> count = block2.findElements(By.cssSelector(objectFile.getString("listBlockElements"))); // Description count
+
+                System.out.println("x-----------------------------------------------------x");
+                for (WebElement link : count)
+                    {
+                        System.out.println(link.getText());
+                        secondList.add(link.getText());
+                    }
+            }
+        
+        public static void VerifyContent(String productName, String productPrice) throws InterruptedException
+            {
+                //store for verification and console check
+                productName = productName.substring(0,13);
+                Thread.sleep(2000);
+                productName2 = driver
+                        .findElement(By.xpath(objectFile.getString("listProductName1") + productName + objectFile.getString("listProductName2")))
+                            .getText();
+                
+                productPrice = productPrice.substring(1, productPrice.length()); //Removing the Rupee symbol from price as it causes NoSuchElementException
+                
+                productPrice2 = driver
+                        .findElement(By.xpath(objectFile.getString("listProductPrice1") + productPrice + objectFile.getString("listProductPrice2")))
+                            .getText();
+
+                productName2 = productName2.substring(0, 13);
+                productPrice2 = productPrice2.substring(1, productPrice2.length()); //Removing the Rupee symbol from the price to be compared to
+
+                System.out.println("*----------------------------------*");
+                System.out.println(productName2 + "; " + productPrice2);
+                System.out.println(productName + "; " + productPrice);
+                productNameO = productName;
+                productPriceO = productPrice;
+            }
+        
+        
+        //***********************
+        
         
         @AfterTest()
         public void quitDriver()
