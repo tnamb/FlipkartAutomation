@@ -9,7 +9,7 @@ public class TestLogin extends TestBase
     {    
         public void LoginMethod() throws IOException
             {             
-                WebElement popUp = driver.findElement(By.xpath(objectFile.getString("loginPopup"))); // login popup
+                WebElement popUp = driver.findElement(By.xpath(objectFile.getString("loginPopup")));
                 if (popUp != null)
                     {
                         driver.findElement(By.xpath(objectFile.getString("usernameTextBox"))).sendKeys(username);

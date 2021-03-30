@@ -99,7 +99,7 @@ public class TestBase
             
             driver.get(url); 
             driver.manage().timeouts().implicitlyWait(Integer.parseInt(configFile.getString("implicitWait")),TimeUnit.SECONDS);
-            wait = new WebDriverWait(driver, 5); 
+            wait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait"))); 
         }
         
         @AfterTest()

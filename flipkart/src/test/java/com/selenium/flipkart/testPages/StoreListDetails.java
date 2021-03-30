@@ -35,13 +35,14 @@ public class StoreListDetails extends TestBase
                         .findElement(By.xpath(objectFile.getString("listProductName1") + productName + objectFile.getString("listProductName2")))
                             .getText();
                 
-                productPrice = productPrice.substring(1, productPrice.length()); //Removing the rupee symbol from price as it causes NoSuchElementException
+                productPrice = productPrice.substring(1, productPrice.length()); //Removing the Rupee symbol from price as it causes NoSuchElementException
+                
                 productPrice2 = driver
                         .findElement(By.xpath(objectFile.getString("listProductPrice1") + productPrice + objectFile.getString("listProductPrice2")))
                             .getText();
 
                 productName2 = productName2.substring(0, 13);
-                productPrice2 = productPrice2.substring(1, productPrice2.length());
+                productPrice2 = productPrice2.substring(1, productPrice2.length()); //Removing the Rupee symbol from the price to be compared to
 
                 System.out.println("*----------------------------------*");
                 System.out.println(productName2 + "; " + productPrice2);
