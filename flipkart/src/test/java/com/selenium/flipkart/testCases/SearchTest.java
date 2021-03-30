@@ -30,14 +30,14 @@ public class SearchTest extends TestBase
                 driver.findElement(By.cssSelector(objectFile.getString("searchButton"))).click();
 
                 List<WebElement> numberOfElements = driver
-                        .findElements(By.className(objectFile.getString("searchListNumberOfElements"))); // Finding the number of search elements
+                        .findElements(By.className(objectFile.getString("searchListNumberOfElements")));
                                                                                                              
-                int number = RandomNumberGenerator(numberOfElements.size()); // Calling random method
+                int number = RandomNumberGenerator(numberOfElements.size());
                 By div = By.xpath(objectFile.getString("productLocator1") + (number - 1) + objectFile.getString("productLocator2")); 
                 
                 System.out.println("Random number generated is: " + number);
                 
-                block = driver.findElement(div); // Selecting a random element
+                block = driver.findElement(div);
                 List<WebElement> numberOfLi = block
                         .findElements(By.cssSelector(objectFile.getString("numberOfListElements")));
 
@@ -47,11 +47,11 @@ public class SearchTest extends TestBase
                 productPrice = block.findElement(By.cssSelector(objectFile.getString("productPrice"))).getText();
                 System.out.println("ProductPrice: " + productPrice);
 
-                StoreDataInList(numberOfLi); // Storing randomly selected product description into a List
+                StoreDataInList(numberOfLi);
                     block.click();
                 
                 List<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-                driver.switchTo().window(newTab.get(1)); //switching to the new tab
+                driver.switchTo().window(newTab.get(1));
                 
                 TestBase.VerifyDescription();
             }

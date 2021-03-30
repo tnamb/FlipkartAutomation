@@ -8,8 +8,6 @@ import com.selenium.flipkart.testBase.TestBase;
 
 public class AddToCartTest extends TestBase
     {
-        
-        
         @Test(priority = 3)
         public void Cart() throws InterruptedException
         {

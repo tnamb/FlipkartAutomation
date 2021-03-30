@@ -30,7 +30,6 @@ public class TestBase
         String browser = "";
         public static String searchParameter = "";
         
-        //static WebElement block;
         public static RemoteWebDriver driver;
         protected static WebDriverWait wait, popUpWait;
         protected static List<String> secondList = new ArrayList<String>();
@@ -44,11 +43,7 @@ public class TestBase
         {
             configFile = ResourceBundle.getBundle("config");
             objectFile = ResourceBundle.getBundle("object");
-            
-            /*
-             * Browser related configuration
-             */
-            
+      
             if (configFile.getString("browser").equals("chrome"))
                 {
                     DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -78,32 +73,23 @@ public class TestBase
 
             else if (configFile.getString("browser").equals("opera"))
                 {
+                    @SuppressWarnings("deprecation")
                     DesiredCapabilities cap = DesiredCapabilities.opera();
                     cap.setBrowserName("opera");
                     cap.setPlatform(Platform.ANY);
 
                     driver = new RemoteWebDriver(new URL(configFile.getString("gridUrl")), cap);
                 }
-            
-            
-            /*
-             * credentials related configuration
-             */
-            
+
             username = configFile.getString("username");
             password = configFile.getString("password");
             url = configFile.getString("url");
             searchParameter = configFile.getString("searchParameter");
-            //browser = configFile.getString("browser");   
-        
-            /*
-             * driver related configuration
-             */
             
             driver.get(url); 
-            driver.manage().timeouts().implicitlyWait(Integer.parseInt(configFile.getString("implicitWait")),TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Integer.parseInt(configFile.getString("implicitWait")), TimeUnit.SECONDS);
             wait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait"))); 
-            popUpWait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait"))); // Explicit wait
+            popUpWait = new WebDriverWait(driver, Integer.parseInt(configFile.getString("explicitWait")));
         }
         
         
@@ -129,18 +115,15 @@ public class TestBase
                         System.out.println(link.getText());
                         firstList.add(link.getText());
                     }
-                firstList.remove(firstList.size() - 1); //remove the last bullet point (warranty related info: not needed)
+                firstList.remove(firstList.size() - 1); 
             }
-        
-        //***********************
-        
+  
         public static void VerifyDescription()
             {
-                //store for verification and console check
                 WebElement block2 = driver.findElement(By.cssSelector(objectFile.getString("listBlock")));
-                List<WebElement> count = block2.findElements(By.cssSelector(objectFile.getString("listBlockElements"))); // Description count
+                List<WebElement> count = block2.findElements(By.cssSelector(objectFile.getString("listBlockElements")));
 
-                System.out.println("x-----------------------------------------------------x");
+                System.out.println("x--------------------------------------------x");
                 for (WebElement link : count)
                     {
                         System.out.println(link.getText());
@@ -150,33 +133,28 @@ public class TestBase
         
         public static void VerifyContent(String productName, String productPrice) throws InterruptedException
             {
-                //store for verification and console check
                 productName = productName.substring(0,13);
                 Thread.sleep(2000);
                 productName2 = driver
                         .findElement(By.xpath(objectFile.getString("listProductName1") + productName + objectFile.getString("listProductName2")))
                             .getText();
                 
-                productPrice = productPrice.substring(1, productPrice.length()); //Removing the Rupee symbol from price as it causes NoSuchElementException
+                productPrice = productPrice.substring(1, productPrice.length());
                 
                 productPrice2 = driver
                         .findElement(By.xpath(objectFile.getString("listProductPrice1") + productPrice + objectFile.getString("listProductPrice2")))
                             .getText();
 
                 productName2 = productName2.substring(0, 13);
-                productPrice2 = productPrice2.substring(1, productPrice2.length()); //Removing the Rupee symbol from the price to be compared to
+                productPrice2 = productPrice2.substring(1, productPrice2.length()); 
 
-                System.out.println("*----------------------------------*");
+                System.out.println("**----------------------------------**");
                 System.out.println(productName2 + "; " + productPrice2);
                 System.out.println(productName + "; " + productPrice);
                 productNameO = productName;
                 productPriceO = productPrice;
             }
-        
-        
-        //***********************
-        
-        
+
         @AfterTest()
         public void quitDriver()
         {
