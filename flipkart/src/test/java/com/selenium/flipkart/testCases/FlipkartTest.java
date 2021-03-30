@@ -14,10 +14,11 @@ public class FlipkartTest extends TestBase
                       //TestBase obj = new TestBase(); 
                       
                 
-                  LoginTest logIn = new LoginTest(); 
-                  SearchTest search = new SearchTest();
-                  LogoutTest logOut = new LogoutTest(); 
-                  AddToCartTest atc = new AddToCartTest(); //StoreListDetails verify = new StoreListDetails();
+                /*
+                 * LoginTest logIn = new LoginTest(); SearchTest search = new SearchTest();
+                 * LogoutTest logOut = new LogoutTest(); AddToCartTest atc = new
+                 * AddToCartTest();
+                 */ //StoreListDetails verify = new StoreListDetails();
                   
                  // logIn.LoginMethod(); 
                  // search.SearchFlipkart(); 
